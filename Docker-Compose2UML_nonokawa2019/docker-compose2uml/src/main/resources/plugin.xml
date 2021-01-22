@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+    <extension point="com.change_vision.astah.ui.view">
+
+        <view
+                id="yaml-editor-view"
+                type="extraTab"
+                class="io.github.nnkwrik.astah.view.yamlEditor.YAMLEditorView" />
+        <view
+                id="service-creator-view"
+                type="extraTab"
+                class="io.github.nnkwrik.astah.view.serviceCreator.ServiceCreatorView" />
+    </extension>
+
+    <extension point="com.change_vision.astah.ui.actionSets">
+        <actionSet
+                label="%action_set_label"
+                visible="true"
+                id="io.github.nnkwrik.astah.docker-compose2uml.actionSet">
+            <menu
+                    id="docker-compose"
+                    label="%docker-compose_group"
+                    path="tool/docker-compose">
+            </menu>
+
+
+            <action
+                    label="%ExportAction_label"
+                    icon="icons/sample.gif"
+                    tooltip="test"
+                    class="io.github.nnkwrik.astah.action.ExportAction"
+                    menubarPath="tool/docker-compose/"
+                    id="ExportAction">
+            </action>
+
+            <action
+                    label="%FromExistYamlAction_label"
+                    icon="icons/sample.gif"
+                    tooltip="%docker-compose2uml_tooltip"
+                    class="io.github.nnkwrik.astah.action.FromExistYamlAction"
+                    menubarPath="tool/docker-compose/"
+                    id="FromExistYamlAction">
+            </action>
+
+            <action
+                    label="%FromNewYamlAction_label"
+                    icon="icons/sample.gif"
+                    tooltip="%docker-compose2uml_tooltip"
+                    class="io.github.nnkwrik.astah.action.FromNewYamlAction"
+                    menubarPath="tool/docker-compose/"
+                    id="FromNewYamlAction">
+            </action>
+        </actionSet>
+    </extension>
+
+
+</plugin>

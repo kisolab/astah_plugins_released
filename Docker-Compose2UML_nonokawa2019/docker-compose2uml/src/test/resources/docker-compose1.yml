@@ -1,0 +1,15 @@
+version: '3'
+services:
+
+  mysql:
+    image: mysql:5.7
+    container_name: fangxianyu-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./dev/mysql/conf:/etc/mysql/conf.d
+      - ./dev/mysql/data:/var/lib/mysql
+      - ./dev/mysql/dump:/docker-entrypoint-initdb.d
+    restart: always

@@ -1,0 +1,103 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+    - "3306:3306"
+    networks:
+    - infra
+    volumes:
+    - ./dev/mysql/conf:/etc/mysql/conf.d
+    - ./dev/mysql/data:/var/lib/mysql
+    - ./dev/mysql/dump:/docker-entrypoint-initdb.d
+    restart: always
+ 
+  rabbitmq:
+    image: rabbitmq:3.7.8-management
+    ports:
+    - "5672:5672"
+    - "15672:15672"
+    networks:
+    - infra
+    hostname: my-rabbit-mq
+    restart: always
+  redis:
+    image: redis:3.2
+    networks:
+    - infra 
+    volumes:
+    - ./dev/redis/data:/data
+    ports:
+    - "6379:6379"
+  eureka:
+    build: ./eureka
+    networks:
+    - backend
+    restart: always
+  user-service:
+    build: ./user-service
+    restart: always
+    depends_on:
+    - mysql
+    - rabbitmq
+    - eureka
+    networks:
+    - backend
+    - infra
+
+  auth-service:
+    build: ./auth-service
+    restart: always
+    depends_on:
+    - mysql
+    - rabbitmq
+    - eureka
+    - user-service
+    networks:
+    - backend
+    - infra
+
+  goods-service:
+    build: ./goods-service
+    restart: always
+    depends_on:
+    - mysql
+    - eureka
+    - user-service
+
+    networks:
+    - backend
+    - infra
+
+  im-service:
+    build: ./im-service
+    restart: always
+    depends_on:
+    - mysql
+    - redis
+    - eureka
+    - user-service
+    - goods-service
+    networks:
+    - backend
+    - infra
+  gateway:
+    build: ./gateway
+    ports:
+    - "8080:8080"
+    networks:
+      - backend
+    restart: always
+    depends_on:
+    - eureka
+    - user-service
+    - auth-service
+    - goods-service
+    - im-service
+
+networks:
+  backend:
+  infra:
+

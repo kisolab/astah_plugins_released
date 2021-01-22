@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  sample-service1:
+    build: ./dir1
+    networks:
+      - sample-network
+    depends_on:
+      - sample-service2
+  sample-service2:
+    build: ./dir2
+    networks:
+      - sample-network
+networks:
+  sample-network: null

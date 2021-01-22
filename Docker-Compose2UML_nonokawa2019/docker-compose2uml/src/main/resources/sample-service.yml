@@ -1,0 +1,7 @@
+### dockaer-compose yamlの記述仕様について:https://docs.docker.com/compose/compose-file/
+# 以下は記述の例である
+sample-service:
+  build: ./dir
+  ports:
+    - "8080"
+  restart: always
