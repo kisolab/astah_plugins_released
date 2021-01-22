@@ -1,4 +1,4 @@
-# Template based UML
+# Template based UML Checker
 
 ## テンプレートに基づいたUML上位設計に対する整合性検査と自動コード生成
 
