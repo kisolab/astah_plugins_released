@@ -148,8 +148,8 @@ public class ExtensionView extends JPanel implements IPluginExtraTabView , Actio
   public void projectChanged(ProjectEvent e) {
     //changedcount ++;
     //System.out.println("changedcount : " + changedcount);
-    ProjectChangedAction pca = new ProjectChangedAction();
-    pca.changedAction(e);
+    //ProjectChangedAction pca = new ProjectChangedAction();
+    //pca.changedAction(e);
   }
 
   @Override

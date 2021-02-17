@@ -31,7 +31,7 @@ public class ProjectChangedAction {
     public void changedAction(ProjectEvent e){
         Activator acti = new Activator();
         try{
-            System.out.println("--------------Project Changed Event--------------");
+            //System.out.println("--------------Project Changed Event--------------");
             ProjectEditUnit[] editunits = e.getProjectEditUnit();
             //System.out.println(editunits.length);
             
@@ -39,7 +39,7 @@ public class ProjectChangedAction {
                 //ADD 0, MODIFY 1, REMOVE 2
                 int operationnum = unit.getOperation();
                 IEntity entity = unit.getEntity();
-                //System.out.println("  " + operationnum + " : " + entity);
+                System.out.println("  " + operationnum + " : " + entity);
                 if(entity != null){
                     if(entity instanceof IPresentation){
                         IPresentation unitpre = (IPresentation)entity;
@@ -47,12 +47,11 @@ public class ProjectChangedAction {
                         if(operationnum == 0){
                             operationname = "ADD   ";
                             acti.addcount ++;
-                            System.out.println("add : " + acti.addcount);
+                           System.out.println("add : " + acti.addcount);
                             break;
                         }
                     }
                 }
-                /*
                 if(entity != null){
                     if(entity instanceof IPresentation){
                         IPresentation unitpre = (IPresentation)entity;
@@ -76,7 +75,6 @@ public class ProjectChangedAction {
                         System.out.println(operationname + " : " + unitpre + " : " + unitpre.getID());
                     }
                 }
-                */
             }
             
         }

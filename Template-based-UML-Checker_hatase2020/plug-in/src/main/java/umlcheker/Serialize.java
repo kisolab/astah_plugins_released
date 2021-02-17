@@ -31,7 +31,6 @@ public class Serialize extends DiagramReflection{
 			ObjectOutputStream objOutStream = 
 			new ObjectOutputStream(new FileOutputStream(projectName()));
 			objOutStream.writeObject(senotelist);
-			//objOutStream.writeObject(secolormap);
          } catch (Exception e){
 			 System.out.println("seri failed");
              System.out.println(e);
@@ -39,30 +38,20 @@ public class Serialize extends DiagramReflection{
      }
 
 	 public void deseri()
-		throws ClassNotFoundException , InvalidEditingException, InvalidUsingException{
-		
+		throws ClassNotFoundException , InvalidEditingException, InvalidUsingException{		
 		ArrayList<String> denotelist = new ArrayList<String>();
-		HashMap<String , HashMap<String ,String>> decolormap
-		 = new HashMap<String , HashMap<String, String>>();
-
 		try {
             ObjectInputStream objInStream 
               = new ObjectInputStream(new FileInputStream(projectName()));
 			denotelist = (ArrayList)objInStream.readObject();
-			decolormap = (HashMap)objInStream.readObject();
-        } catch (FileNotFoundException e){
-			System.out.println("File not found");
-			System.out.println(e);
 		}catch(EOFException e){
 			//
 		} catch(Exception e){
 			System.out.println("deseri failed");
 			System.out.println(e);
 		}
-		System.out.println("Warning Note number : " + denotelist.size());
 		DiagramReflection dr = new DiagramReflection();
 		dr.setdel(denotelist);
-		recolor(decolormap);
 	 }
 
 	 private String projectName(){

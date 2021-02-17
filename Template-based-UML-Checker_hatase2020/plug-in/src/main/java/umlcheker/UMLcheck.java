@@ -19,7 +19,7 @@ public class UMLcheck extends Thread{
 	
 	IActivityDiagram nowprobdgm;
 	List<IClass> iClassList = new ArrayList<IClass>();
-	List<IActivity> iActivityList = new ArrayList<IActivity>();
+	public static List<IActivity> iActivityList = new ArrayList<IActivity>();
 	public static Map<String , Map<IFlow , IFlow>> slicematch;
 	public static Map<IActivityDiagram , Map<String , Map<IFlow , IFlow>>> slicematchact
 	 = new LinkedHashMap<IActivityDiagram , Map<String , Map<IFlow , IFlow>>>();
@@ -66,8 +66,6 @@ public class UMLcheck extends Thread{
 		System.out.println("---" + iActivity + "---");
 		IActivityDiagram nowdgm = iActivity.getActivityDiagram();
 		nowprobdgm = nowdgm;
-		System.out.println(iActivity.getActivityNodes().length);
-		System.out.println(((IDiagram)nowdgm).getPresentations().length);
 		IActivityNode[] iNodes = iActivity.getActivityNodes();
 		Boolean checkflowflag = checkFlow(iNodes);
 		for(IActivityNode iNode : iNodes){
@@ -101,24 +99,7 @@ public class UMLcheck extends Thread{
 			addEvaluationMap(nowprobdgm.getId(),nowprobdgm.getName(),nowprobdgm.getClass(),1.122);	
 		}
 	  }
-	  
-
-	  //--------------------------------
-	  
-	  /*
-	  IAttribute = wf
-	  IPartition = xr
-	  IClass = wi
-	  IActivityNode =  vW
-	  IOperation =  xn
-	  IParameter = xq
-	  IFow = wR
-	  IActivity = vY
-	  IClassDiagram = wh
-	  */
-	  
 	  //------------------------------------------------------
-	  
 	  ///*
 	  for(String cid : iEvaluationMap.keySet()){
 		Map<IElementSt , Double> cmap = iEvaluationMap.get(cid);
@@ -133,10 +114,10 @@ public class UMLcheck extends Thread{
 
 	  //-----------------------------DiagramReflection--------------------------
 	  
-	  /*
+	  ///*
 	  DiagramReflection df = new DiagramReflection();
 	  df.reflectionEvaluation(iEvaluationMap);
-	  */
+	  //*/
 	  
 	  
 	  //------------------------------------------------------
@@ -149,7 +130,6 @@ public class UMLcheck extends Thread{
   //------------------------------------------------------------------//
   
   private void setvariableinitialize(IActivityNode node){
-	System.out.println("set");
 	slicematch = new TreeMap<String , Map<IFlow , IFlow>>();
 	slicelist = new ArrayList<String>();
 	problist = new ArrayList<IActivityNode>();
@@ -198,7 +178,7 @@ public class UMLcheck extends Thread{
 		  if(dgm instanceof IActivityDiagram){
 			iActivityList.add(((IActivityDiagram)dgm).getActivity());	
 		  }
-		  else if(dgm instanceof IClassDiagram){
+		  else if(dgm instanceof IClassDiagram){		
 			IPresentation[] pres = dgm.getPresentations();
 			boolean classflag = false;
 			for(IPresentation pre : pres){
@@ -450,7 +430,6 @@ public class UMLcheck extends Thread{
 						beforenext(nownode , (int)rootnum);
 					}
 					else{
-						System.out.println("Flow is broken at " + nownode);//1.31
 						addEvaluationMap(nownode.getId(),nownode.getName(),nownode.getClass(),1.31);
 					}
 				}
@@ -481,7 +460,6 @@ public class UMLcheck extends Thread{
 					}
 				}
 				else{
-					System.out.println("Unable to match any node with " + nownode);//1.41
 					addEvaluationMap(nownode.getId(),nownode.getName(),nownode.getClass(),1.41);
 				}
 			}
@@ -493,7 +471,6 @@ public class UMLcheck extends Thread{
 					nstack.push(matchjoin);
 				}
 				else{
-					System.out.println("Unable to match any node with " + nownode);//1.41
 					addEvaluationMap(nownode.getId(),nownode.getName(),nownode.getClass(),1.41);
 				}
 			}
@@ -537,12 +514,10 @@ public class UMLcheck extends Thread{
 							}
 						}
 						if(!guardflag){
-							System.out.println("There is no conditional statement in " + nownode);//1.42
 							addEvaluationMap(nownode.getId(),nownode.getName(),nownode.getClass(),1.42);
 						}
 					}
 					else{
-						System.out.println("Unable to match any node with " + nownode);//1.41
 						addEvaluationMap(nownode.getId(),nownode.getName(),nownode.getClass(),1.41);
 					}
 				}
@@ -629,7 +604,6 @@ public class UMLcheck extends Thread{
 									}
 							}
 							else{
-								System.out.println("Unable to match any node with " + nownode);//1.41
 								addEvaluationMap(nownode.getId(),nownode.getName(),nownode.getClass(),1.41);
 							}
 						}
@@ -658,7 +632,6 @@ public class UMLcheck extends Thread{
 						}
 					}
 					else{
-						System.out.println("Unable to match any node with " + nownode);//1.41
 						addEvaluationMap(nownode.getId(),nownode.getName(),nownode.getClass(),1.41);
 					}
 				}
@@ -763,7 +736,6 @@ public class UMLcheck extends Thread{
 			//merge
 				else{
 					if(pstack.empty()){
-						System.out.println("Unable to match any node with " + nownode);//1.41
 						addEvaluationMap(nownode.getId(),nownode.getName(),nownode.getClass(),1.41);
 					}
 					else{
@@ -816,7 +788,6 @@ public class UMLcheck extends Thread{
 								//syntaxmap.get(peekflow.getTarget()).put(nowflow.getSource() , splittag[0]);
 							}
 							else{
-								System.out.println("Unable to match any node with " + nownode);//1.41
 								addEvaluationMap(nownode.getId(),nownode.getName(),nownode.getClass(),1.41);
 							}
 						}
@@ -859,18 +830,15 @@ public class UMLcheck extends Thread{
 						}
 					}
 					if(!guardflag){
-						System.out.println("There is no conditional statement in " + nownode);//1.42
 						addEvaluationMap(nownode.getId(),nownode.getName(),nownode.getClass(),1.42);
 					}
 				}
 				else{
-					System.out.println("Unable to match any node with " + nownode);//1.41
 					addEvaluationMap(nownode.getId(),nownode.getName(),nownode.getClass(),1.41);
 				}
 			}
 		//worong number---------------------------------------------
 			else{
-				System.out.println("Worong the number of the " + nownode + "'s Flow");//1.32
 				addEvaluationMap(nownode.getId(),nownode.getName(),nownode.getClass(),1.32);
 			}
 	//-----------------------------------------------------------------------------------
@@ -980,7 +948,7 @@ public class UMLcheck extends Thread{
 										if(nownode.getOutgoings().length == root){
 											Object e = pstack.pop();
 											if(finallyflag == null){
-												System.out.println("there are no FinallyBlock");
+												addEvaluationMap(nownode.getId(),nownode.getName(),nownode.getClass(),1.53);
 											}
 											else{
 												if(finallyemp){

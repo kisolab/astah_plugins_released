@@ -416,6 +416,13 @@ public class CreateTemplate{
 		else if(selectpres.length == 2){
 			IFlow se1 = (IFlow)(selectpres[0].getModel());
 			IFlow se2 = (IFlow)(selectpres[1].getModel());
+			if(se2.getTarget().getOutgoings().length == 1){
+				if(se2.getTarget().getOutgoings()[0].getId().equals(se1.getId())){
+					IPresentation kp = selectpres[0];
+					selectpres[0] = selectpres[1];
+					selectpres[1] = kp;
+				}
+			}
 			boolean probflag = false;
 			for(String slicename : UMLcheck.slicematch.keySet()){
 				Map<IFlow , IFlow> sfm = UMLcheck.slicematch.get(slicename);

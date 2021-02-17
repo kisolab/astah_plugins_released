@@ -123,13 +123,9 @@ public class DiagramReflection extends UMLcheck{
 						ecn = "IPattition";
 						ines = Arrays.asList(projectAccessor.findElements(IPartition.class , elementname));
 						break;
-					case "wi": 
+					case "wt": 
 						ecn = "IClass";
 						ines = Arrays.asList(projectAccessor.findElements(IClass.class , elementname));
-						break;
-					case "vW": 
-						ecn = "IActivityNode";
-						ines = Arrays.asList(projectAccessor.findElements(IActivityNode.class , elementname));
 						break;
 					case "wD":
 						ecn = "IControlNode";
@@ -152,12 +148,12 @@ public class DiagramReflection extends UMLcheck{
 						ines = Arrays.asList(projectAccessor.findElements(IActivity.class , elementname));
 						break;
 					case "wh":
-						ecn = "IClassDiagram";
-						ines = Arrays.asList(projectAccessor.findElements(IClassDiagram.class , elementname));
+						ecn = "IActivityNode";
+						ines = Arrays.asList(projectAccessor.findElements(IActivityNode.class , elementname));
 						break;
 					case "ws":
-						ecn = "IControlNode";
-						ines = Arrays.asList(projectAccessor.findElements(IControlNode.class , elementname));
+						ecn = "IClassDiagram";
+						ines = Arrays.asList(projectAccessor.findElements(IClassDiagram.class , elementname));
 						break;
 					case "xh":
 						ecn = "IInputPin";
@@ -234,16 +230,17 @@ public class DiagramReflection extends UMLcheck{
 		//throws
 		ArrayList<IComment> comentList = new ArrayList<IComment>();
 		try{
-			AstahAPI api = AstahAPI.getAstahAPI();
-			ProjectAccessor projectAccessor = api.getProjectAccessor();
-			IModel iCurrentProject = projectAccessor.getProject();
-			INamedElement element = iCurrentProject;
-			IDiagram[] dgms = element.getDiagrams();
-			for(IDiagram dgm : dgms){
+			UMLcheck uc = new UMLcheck();
+			List<IActivity> acts = new ArrayList<IActivity>();
+			acts = uc.iActivityList;
+			for(IActivity act : acts){
+				IDiagram dgm = (IDiagram)(act.getActivityDiagram());
 				IComment[] comes = dgm.getComments();
 				for(IComment come : comes){
-					comentList.add(come);	
+					comentList.add(come);
 				}
+			}
+			for(String dn : delnotelist){
 			}
 			for(IComment come : comentList){
 				IPresentation comepre = come.getPresentations()[0];

@@ -75,13 +75,11 @@ public class Activator implements BundleActivator {
 					catchflag = false;
 				}
 				if(selectnum > 0){
-					selectcount ++;
-					System.out.println("selectcount : " + selectcount);
 					IPresentation[] selectpres = iDVM.getSelectedPresentations();
 					//System.out.println(selectpres.length);
 					//System.out.println(selectpres[0].getProperty("fill.color"));
 					for(IPresentation selectpre : selectpres){
-						System.out.println(selectpre + " select");
+						//System.out.println(selectpre + " select");
 						keepele = selectpre;
 						//System.out.println(selectpre.getID());
 					}
