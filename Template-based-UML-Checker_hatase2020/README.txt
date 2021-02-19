@@ -1,13 +1,3 @@
------------------ファイルについて-----------------
-＊test_back
-挿入支援，構造検査プラグイン
-
-＊m2t_back
-m2tをベースとしたコード生成プラグイン
-
-＊Template_based_UML-Cheker
-上記二つを統合したもの
-
 -----------------プラグインについて-----------------
 ＠ src/main/java/jp : m2tベースのコード生成に関する部分
 
@@ -28,11 +18,11 @@ setmapメソッドで図要素を引き渡す
 
 ＠ src/main/java/umlcheker : 挿入支援，構造検査に関する部分
 
-・Activaotr
+・Activator
 プロジェクト内の要素選択といったイベントの取得が主
 挿入支援の際，選択フローうんぬんで使用
 
-・ChangedSlice
+・ChangedSliceColor
 スライスのハイライトに使用
 
 ・CreateTemplate
@@ -44,7 +34,7 @@ setmapメソッドで図要素を引き渡す
 それを見て決め打ちで生成しているので拡張性は最悪
 テンプレート構造の内部ステートメントにあたる部分に印付けをすれば解消できそう
 
-・DiagramReflaction
+・DiagramReflection
 エラーノートの生成など
 reflactionEvaluationメソッドのswitch文の各caseだが，
 (たぶん)astahまたはAPIのバージョン違いから上手く動かないかも
@@ -59,7 +49,7 @@ reflactionEvaluationメソッドのswitch文の各caseだが，
 拡張タブに関する部分
 図要素の変更も拾ってる
 
-・Modelinset
+・Modelinsert
 構造挿入支援の前準備
 別に必要ない
 
@@ -94,6 +84,7 @@ nstackに探索するノードを入れたり出したりして探査する
 それを拾う部分が抜けており，NullPointerやEmptyStackが度々起こる可能性大
 
 ＠ java.template
+resources/m2t/templates/java.template
 m2tのgit(https://github.com/s-hosoai/astahm2t)の概要を要見られたし
 
 -----------------注意事項-----------------
