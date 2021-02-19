@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Astah-Edition: all
 Astah-Version: 6.7
-Bnd-LastModified: 1613529666232
+Bnd-LastModified: 1613530153213
 Build-Jdk: 1.8.0_231
 Built-By: admin
 Bundle-Activator: umlcheker.Activator
